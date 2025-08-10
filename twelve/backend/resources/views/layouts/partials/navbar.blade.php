@@ -118,18 +118,23 @@
             </div>
           </li>
           <li class="nav-item nav-profile dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-              <img src="images/faces/face5.jpg" alt="profile"/>
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              @if(Auth::user()->profile_picture)
+                <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="profile" style="object-fit:cover; width:40px; height:40px; border-radius:50%; border:2px solid #4F8EF7;"/>
+              @else
+                <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->name) }}&background=4F8EF7&color=fff&size=64" alt="profile" style="object-fit:cover; width:40px; height:40px; border-radius:50%; border:2px solid #4F8EF7;"/>
+              @endif
               <span class="nav-profile-name">{{ Auth::user()->name }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
-                <i class="mdi mdi-settings text-primary"></i>
-                Settings
+              <a class="dropdown-item" href="{{ url('admin/profile') }}">
+                <i class="mdi mdi-account-cog text-primary"></i>
+                Manage Account
               </a>
               <a class="dropdown-item" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();">
+                    <i class="mdi mdi-logout text-danger"></i>
                     {{ __('Logout') }}
               </a>
               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
