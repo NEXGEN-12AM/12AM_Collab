@@ -24,9 +24,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
     //Category Route 
     Route::controller(CategoryController::class)->group(function(){
         Route::get('/category','index');
-        Route::post('/category/create' , 'create');
+        Route::get('/category/create' , 'create');
         Route::post('/category','store');
         Route::get('/category/{category}/edit','edit');
+        Route::put('/category/{category}','update');
     });
 
 });

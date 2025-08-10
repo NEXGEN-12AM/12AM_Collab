@@ -9,41 +9,41 @@
         <div class="card">
             <div class="card-header">
                 <h3>Edit Category
-                    <a href="{{ url('admin/category')}}" class="btn btn-primary btn-sm text-white float-end">BACK</a>
+                    <a href="{{ url('admin/category/')}}" class="btn btn-primary btn-sm text-white float-end">BACK</a>
                 </h3>
             </div>
             <div class="card-body">
-                <form action="{{ url('admin/category')}}" method="POST" enctype="multipart/form-data" >
+                <form action="{{ url('admin/category/'.$category->id) }}" method="POST" enctype="multipart/form-data" >
                     @csrf
+                    @method('PUT')
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label>Name</label>
-                            <input type="text" name="name" value="{{ $category->name }}" class="form-cotrol" />
+                            <input type="text" name="name" value="{{ $category->name }}" class="form-control" />
                             @error('name')
                                 <small class="text-danger">{{$message}}</small>
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>Slug</label>
-                            <input type="text" name="slug" value="{{ $category->slug}}" class="form-cotrol" />
+                            <input type="text" name="slug" value="{{ $category->slug}}" class="form-control" />
                         </div>
                         <div class="col-md-12 mb-3">
                             <label>Description</label><br/>
-                            <textarea name="description" class="form-cotrol" rows="3">{{ $category->description }}</textarea>
+                            <textarea name="description" class="form-control" rows="3">{{ $category->description }}</textarea>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <labe>Image</label>
-                            <input type="file" name="image" class="form-cotrol" />
+                            <label>Image</label>
+                            <input type="file" name="image" class="form-control" />
                             <img src="{{ asset('uploads/category/'.$category->image) }}" width="60px" height="60px"/>
                             @error('image') <small class="text-danger">{{$message}}</small> @enderror
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>Status</label><br/>
-                            <input type="checkbox" name="status" {{ $category->status == '1' ? 'checked':''}}/> 
-                            <select class="form-control">>
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
+                            <select name="status" class="form-control">
+                                <option value="1" {{ $category->status == 'active' ? 'selected' : '' }}>Active</option>
+                                <option value="0" {{ $category->status == 'inactive' ? 'selected' : '' }}>Inactive</option>
                             </select>
                         </div>
                         <div class="col-md-6 mb-3">
@@ -51,7 +51,7 @@
                             <input type="number" name="sort_order" class="form-control" value="{{ old('sort_order', $category->sort_order) }}" />
                         </div>
                         <div class="col-md-12 mb-3">
-                            <button type="submit" class="btn btn-primary float-end">Save</button>
+                            <button type="submit" class="btn btn-primary float-end">Update</button>
                         </div>
                     </div>
 

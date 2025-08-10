@@ -84,5 +84,6 @@
     <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}" defer></script>
     
     @livewireScripts
+    @stack('scripts')
 </body>
 </html>
