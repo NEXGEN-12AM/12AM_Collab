@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\Admin\Product\Index as ProductIndex;
+use App\Http\Livewire\Admin\Product\Create as ProductCreate;
+use App\Http\Livewire\Admin\Product\Edit as ProductEdit;
 use App\Models\User;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -48,6 +51,12 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
         Route::get('/category/{category}/edit','edit');
         Route::put('/category/{category}','update');
     });
+    // Product Route (Livewire)
+    Route::get('/products', ProductIndex::class)->name('admin.products.index');
+    Route::get('/products/create', ProductCreate::class)->name('admin.products.create');
+    Route::get('/products/{product}/edit', ProductEdit::class)->name('admin.products.edit');
+    Route::get('/products/create', ProductCreate::class)->name('admin.products.create');
+    Route::get('/products/{product}/edit', ProductEdit::class)->name('admin.products.edit');
 
 });
 

@@ -12,12 +12,10 @@
               <span class="menu-title">Categories</span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" href="{{ url('admin/products') }}">
               <i class="mdi mdi-circle-outline menu-icon"></i>
               <span class="menu-title">Products</span>
-              <i class="menu-arrow"></i>
             </a>
-            
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url('admin/profile') }}">
