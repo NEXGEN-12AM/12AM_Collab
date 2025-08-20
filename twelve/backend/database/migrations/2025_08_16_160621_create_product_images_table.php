@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('product_images', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedBigInteger('product_id');
-            $table->string('image'); // Path to the image file
-            $table->boolean('is_featured')->default(false); // Whether this image is featured for the product
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            // $table->unsignedBigInteger('product_id'); // Foreign key to products table
+
+            $table->string('image'); // Image file path
+            $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade'); // Foreign key to products table
             $table->timestamps();
         });
     }
